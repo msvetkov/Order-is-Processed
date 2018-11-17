@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Order\'s Processed</string>
+    <string name="sign_in">Войти</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="new_user">Впервые здесь?</string>
+    <string name="sign_up">Создать аккаунт</string>
+    <string name="fist_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="title_activity_waiter">WaiterActivity</string>
+    <string name="title_menu">Меню</string>
+    <string name="title_orders">Заказы</string>
+    <string name="action_settings">Настройки</string>
+</resources>
