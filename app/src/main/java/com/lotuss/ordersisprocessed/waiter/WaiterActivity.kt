@@ -44,6 +44,10 @@ class WaiterActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
+        onPageChange()
+    }
+
+    private fun onPageChange(){
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -78,7 +82,6 @@ class WaiterActivity : AppCompatActivity() {
 
             }
         })
-
     }
 
 
