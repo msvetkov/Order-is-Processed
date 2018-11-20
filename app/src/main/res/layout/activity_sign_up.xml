@@ -38,7 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:baselineAligned="false">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
@@ -47,9 +48,11 @@
             android:layout_marginRight="4dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxStrokeWidth="0.5dp"
-            app:boxStrokeColor="@color/colorPrimary">
+            app:boxStrokeColor="@color/colorPrimary"
+            android:layout_marginEnd="4dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/first_name_text_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fist_name"
@@ -66,6 +69,7 @@
             app:boxStrokeColor="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/last_name_text_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/last_name"
@@ -84,6 +88,7 @@
         app:boxStrokeColor="@color/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
@@ -102,6 +107,7 @@
         android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
@@ -120,6 +126,7 @@
         android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/repeat_password_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/repeat_password"
@@ -127,8 +134,35 @@
             android:maxLines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_waiter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/waiter"
+                    android:layout_marginEnd="8dp" />
+                <RadioButton
+                    android:id="@+id/rb_cook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/cook"/>
+    </RadioGroup>
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/sign_in"
+        android:id="@+id/sign_up"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center"

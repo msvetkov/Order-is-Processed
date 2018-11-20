@@ -17,9 +17,9 @@ import com.lotuss.ordersisprocessed.cook.CookActivity
 import com.lotuss.ordersisprocessed.ProgressDialogCaller
 import com.lotuss.ordersisprocessed.waiter.WaiterActivity
 
-class AuthWithFirebase(){
+class AuthWithFirebase {
     companion object {
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
         private fun validateForm( context: Context, email: String, password: String): Boolean {
             var valid = true
@@ -44,7 +44,6 @@ class AuthWithFirebase(){
             auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener{ task: Task<AuthResult> ->
                         if (task.isSuccessful) {
-                            val user = auth.currentUser
                             getUserFromDatabase(context)
                         } else {
                             ProgressDialogCaller.hideProgressDialog()
@@ -69,7 +68,7 @@ class AuthWithFirebase(){
 
 
         }
-        private fun authIsSuccess(context: Context, position: Int){
+        fun authIsSuccess(context: Context, position: Int){
             lateinit var intent: Intent
             when(position){
                 0 -> intent = Intent(context, WaiterActivity::class.java)

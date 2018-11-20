@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Order\'s Processed</string>
+    <string name="waiter">Официант</string>
+    <string name="cook">Повар</string>
     <string name="sign_in">Войти</string>
     <string name="email">Email</string>
     <string name="password">Пароль</string>
@@ -15,6 +17,9 @@
     <string name="loading">Пожалуйста, подождите…</string>
     <string name="email_is_empty">Введите email</string>
     <string name="password_is_empty">Введите пароль</string>
+    <string name="first_name_is_empty">Введите имя</string>
+    <string name="last_name_is_empty">Введите фамилию</string>
     <string name="no_acc">Неверный логин или пароль</string>
     <string name="error">Ошибка, повторите позже</string>
+    <string name="passwords_dont_match">Пароли не совпадают</string>
 </resources>
