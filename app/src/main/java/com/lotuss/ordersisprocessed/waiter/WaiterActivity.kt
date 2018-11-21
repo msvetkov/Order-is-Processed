@@ -1,5 +1,6 @@
 package com.lotuss.ordersisprocessed.waiter
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import com.google.android.material.tabs.TabLayout
@@ -13,7 +14,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
-import com.google.android.material.tabs.TabItem
+import com.google.firebase.auth.FirebaseAuth
+import com.lotuss.ordersisprocessed.AuthActivity
 
 import com.lotuss.ordersisprocessed.R
 import com.lotuss.ordersisprocessed.waiter.menu.FragmentMenu
@@ -87,15 +89,21 @@ class WaiterActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main2, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
-        if (id == R.id.action_settings) {
-            return true
+        when(id){
+            R.id.action_settings -> return true
+            R.id.action_exit -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, AuthActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
         return super.onOptionsItemSelected(item)
