@@ -32,10 +32,14 @@ class SignUpWithFirebase{
             }else if (TextUtils.isEmpty(repeatPassword)) {
                 Toast.makeText(context, R.string.repeat_password, Toast.LENGTH_LONG).show()
                 valid = false
-            }else if (!password.equals(repeatPassword)){
+            }else if (!password.equals(repeatPassword)) {
                 Toast.makeText(context, R.string.passwords_dont_match, Toast.LENGTH_LONG).show()
                 valid = false
+            }else if (password.length < 6) {
+                Toast.makeText(context, R.string.password_length_error, Toast.LENGTH_LONG).show()
+                valid = false
             }
+
             return valid
         }
 
