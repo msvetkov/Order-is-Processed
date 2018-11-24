@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+
+        android:id="@+id/expansion_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expansion_headerIndicator="@id/headerIndicator"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_menu"
+            android:textSize="18sp"
+            android:textColor="#000"/>
+
+        <ImageView
+            android:id="@+id/headerIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginLeft="16dp"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+            tools:ignore="RtlHardcoded" />
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansionLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+</LinearLayout>

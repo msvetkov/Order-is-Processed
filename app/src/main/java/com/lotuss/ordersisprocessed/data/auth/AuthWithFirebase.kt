@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.lotuss.ordersisprocessed.R
 import com.lotuss.ordersisprocessed.cook.CookActivity
 import com.lotuss.ordersisprocessed.ProgressDialogCaller
+import com.lotuss.ordersisprocessed.data.food.GetMenu
 import com.lotuss.ordersisprocessed.waiter.WaiterActivity
 
 class AuthWithFirebase {
@@ -65,19 +66,29 @@ class AuthWithFirebase {
                     Toast.makeText(context, R.string.error, Toast.LENGTH_LONG).show()
                 }
             })
-
-
         }
-        fun authIsSuccess(context: Context, position: Int){
-            lateinit var intent: Intent
-            when(position){
-                0 -> intent = Intent(context, WaiterActivity::class.java)
-                1 -> intent = Intent(context, CookActivity::class.java)
-            }
+
+        fun startWaiterActivity(context: Context){
+            val intent = Intent(context, WaiterActivity::class.java)
             ProgressDialogCaller.hideProgressDialog()
             context.startActivity(intent)
             val activity = context as Activity
             activity.finish()
+
+        }
+
+        fun authIsSuccess(context: Context, position: Int){
+            lateinit var intent: Intent
+            when(position){
+                0 -> GetMenu.getMenuFromDatabase(context)
+                1 -> {
+                    intent = Intent(context, CookActivity::class.java)
+                    ProgressDialogCaller.hideProgressDialog()
+                    context.startActivity(intent)
+                    val activity = context as Activity
+                    activity.finish()
+                }
+            }
         }
     }
 }
