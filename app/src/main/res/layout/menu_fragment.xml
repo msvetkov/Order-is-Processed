@@ -5,8 +5,10 @@
     android:gravity="center">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

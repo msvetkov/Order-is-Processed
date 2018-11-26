@@ -20,6 +20,7 @@ class GetMenu {
                 }
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    menuList.clear()
                     for (ds in dataSnapshot.children) {
                         val food: Food = ds.getValue(Food::class.java)!!
                         menuList.add(food)
@@ -36,6 +37,7 @@ class GetMenu {
                 }
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    sectionList.clear()
                     for (ds in dataSnapshot.children){
                         val title = ds.child("title").getValue(String::class.java)!!
                         val type = ds.child("type").getValue(Int::class.java)!!
