@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.lotuss.ordersisprocessed.AuthActivity
 
 import com.lotuss.ordersisprocessed.R
+import com.lotuss.ordersisprocessed.data.orders.Order
+import com.lotuss.ordersisprocessed.data.orders.OrderManager
 import com.lotuss.ordersisprocessed.waiter.menu.FragmentMenu
 import com.lotuss.ordersisprocessed.waiter.orders.FragmentOrders
 import kotlinx.android.synthetic.main.activity_waiter.*
@@ -31,7 +33,7 @@ class WaiterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_waiter)
-
+        OrderManager.order = Order()
         toolbar = this.toolbar_widget
         setSupportActionBar(toolbar)
         supportActionBar!!.title = resources.getString(R.string.title_menu)

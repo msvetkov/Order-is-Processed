@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:text="@string/title_menu"
             android:textSize="20sp"
-            android:textColor="#000"/>
+            android:textColor="@color/colorPrimaryDark"/>
 
         <ImageView
             android:id="@+id/headerIndicator"

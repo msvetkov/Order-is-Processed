@@ -43,6 +43,9 @@ class MenuSectionAdapter(private val layoutInflater: LayoutInflater, private val
         sectionHolder.foodRecyclerView.layoutManager = LinearLayoutManager(sectionHolder.foodRecyclerView.context,
                 RecyclerView.VERTICAL, false)
         sectionHolder.foodRecyclerView.adapter = foodAdapter
+        val dividerItemDecoration: RecyclerView.ItemDecoration  =
+                DividerItemDecorator(sectionHolder.foodRecyclerView.context.resources.getDrawable(R.drawable.divider))
+        sectionHolder.foodRecyclerView.addItemDecoration(dividerItemDecoration)
     }
 
     class SectionHolder(view: View): RecyclerView.ViewHolder(view){

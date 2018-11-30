@@ -24,4 +24,6 @@
     <string name="error">Ошибка, повторите позже</string>
     <string name="passwords_dont_match">Пароли не совпадают</string>
     <string name="password_length_error">Длина пароля должна превышать 6 символов</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
 </resources>
