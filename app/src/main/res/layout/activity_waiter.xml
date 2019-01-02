@@ -62,8 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
         app:srcCompat="@drawable/ic_send_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -16,6 +16,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:clickable="true"
+        app:cardCornerRadius="8dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:focusable="true">
 
@@ -44,7 +45,7 @@
             android:layout_height="wrap_content"
             android:text="@string/title_menu"
             android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="#000"/>
 
         <ImageView
             android:id="@+id/headerIndicator"
@@ -54,7 +55,8 @@
             android:layout_marginLeft="16dp"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/ic_expand_24dp"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded"
+            android:contentDescription="@string/plus" />
 
     </com.github.florent37.expansionpanel.ExpansionHeader>
 

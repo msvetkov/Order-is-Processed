@@ -26,4 +26,12 @@
     <string name="password_length_error">Длина пароля должна превышать 6 символов</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
+    <string name="order_food_list">Заказ</string>
+    <string name="notes">Примечания:</string>
+    <string name="send_order">Отправить заказ</string>
+    <string name="cancel">Отмена</string>
+    <string name="pieces">%1$d шт.</string>
+    <string name="your_order_is_empty">Ваш заказ пуст</string>
+    <string name="pepper">Без перца</string>
+    <string name="sugar">Без сахара</string>
 </resources>

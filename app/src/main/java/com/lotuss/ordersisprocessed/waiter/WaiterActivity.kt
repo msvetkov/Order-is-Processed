@@ -1,8 +1,10 @@
 package com.lotuss.ordersisprocessed.waiter
 
+
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -14,20 +16,23 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.lotuss.ordersisprocessed.AuthActivity
 
 import com.lotuss.ordersisprocessed.R
+import com.lotuss.ordersisprocessed.data.food.Food
 import com.lotuss.ordersisprocessed.data.orders.Order
 import com.lotuss.ordersisprocessed.data.orders.OrderManager
 import com.lotuss.ordersisprocessed.waiter.menu.FragmentMenu
+import com.lotuss.ordersisprocessed.waiter.menu.OrderDialog
 import com.lotuss.ordersisprocessed.waiter.orders.FragmentOrders
 import kotlinx.android.synthetic.main.activity_waiter.*
 
+@Suppress("UNUSED_ANONYMOUS_PARAMETER")
 class WaiterActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
-
     private var sectionsPagerAdapter: SectionsPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,16 +44,30 @@ class WaiterActivity : AppCompatActivity() {
         supportActionBar!!.title = resources.getString(R.string.title_menu)
         sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         container.adapter = sectionsPagerAdapter
-
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        fab.setOnClickListener {
+            showDialog()
         }
 
         onPageChange()
+    }
+
+    fun showDialog(){
+        var isEmptyOrder = true
+        for(f in OrderManager.order.foodList)
+            if (f.count != 0)
+                isEmptyOrder = false
+        if(isEmptyOrder){
+            Snackbar.make(this.main_content, R.string.your_order_is_empty, Snackbar.LENGTH_LONG).show()
+            return
+        }
+
+        for(f in OrderManager.order.foodList)
+            if (f.count != 0)
+                OrderManager.order.orderList.add(f)
+        val dialog = OrderDialog()
+        dialog.show(supportFragmentManager, "DialogFragment")
     }
 
     private fun onPageChange(){
