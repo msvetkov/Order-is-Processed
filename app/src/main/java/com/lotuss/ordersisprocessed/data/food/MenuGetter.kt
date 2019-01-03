@@ -1,13 +1,12 @@
 package com.lotuss.ordersisprocessed.data.food
 
 import android.content.Context
-import android.util.Log
 import com.google.firebase.database.*
 import com.google.firebase.database.DataSnapshot
 import com.lotuss.ordersisprocessed.data.auth.AuthWithFirebase
 
 
-class GetMenu {
+class MenuGetter {
     companion object {
         var menuList: MutableList<Food> = mutableListOf()
         var sectionList: MutableList<MenuSection> = mutableListOf()
@@ -47,7 +46,6 @@ class GetMenu {
 
                     }
                     AuthWithFirebase.startWaiterActivity(context)
-
                 }
             })
         }

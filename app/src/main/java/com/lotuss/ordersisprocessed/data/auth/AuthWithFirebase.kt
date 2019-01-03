@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.lotuss.ordersisprocessed.R
 import com.lotuss.ordersisprocessed.cook.CookActivity
 import com.lotuss.ordersisprocessed.ProgressDialogCaller
-import com.lotuss.ordersisprocessed.data.food.GetMenu
+import com.lotuss.ordersisprocessed.data.food.MenuGetter
 import com.lotuss.ordersisprocessed.waiter.WaiterActivity
 
 class AuthWithFirebase {
@@ -80,7 +80,7 @@ class AuthWithFirebase {
         fun authIsSuccess(context: Context, position: Int){
             lateinit var intent: Intent
             when(position){
-                0 -> GetMenu.getMenuFromDatabase(context)
+                0 -> MenuGetter.getMenuFromDatabase(context)
                 1 -> {
                     intent = Intent(context, CookActivity::class.java)
                     ProgressDialogCaller.hideProgressDialog()

@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lotuss.ordersisprocessed.R
-import com.lotuss.ordersisprocessed.data.food.GetMenu
-import com.lotuss.ordersisprocessed.data.orders.OrderManager
+import com.lotuss.ordersisprocessed.data.food.MenuGetter
 import kotlinx.android.synthetic.main.activity_waiter.*
 import kotlinx.android.synthetic.main.menu_fragment.view.*
 
@@ -18,7 +17,7 @@ class FragmentMenu: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.menu_fragment, container, false)
         val recyclerView: RecyclerView = view.recycler_menu
-        val adapter = MenuSectionAdapter(layoutInflater, GetMenu.sectionList)
+        val adapter = MenuSectionAdapter(layoutInflater, MenuGetter.sectionList)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recyclerView.adapter = adapter
 

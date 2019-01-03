@@ -34,4 +34,10 @@
     <string name="your_order_is_empty">Ваш заказ пуст</string>
     <string name="pepper">Без перца</string>
     <string name="sugar">Без сахара</string>
+    <string name="order_id">#%1$d</string>
+    <string name="more_information">Подробнее...</string>
+    <string name="sent">Отправлен</string>
+    <string name="cooking">Готовится</string>
+    <string name="cooked">Готов</string>
+    <string name="ok">ОК</string>
 </resources>
