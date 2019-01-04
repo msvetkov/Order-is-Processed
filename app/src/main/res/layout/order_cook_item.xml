@@ -47,20 +47,44 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/status"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/sent"
                 android:textSize="18sp"
                 android:textColor="#000"
-                android:drawableLeft="@drawable/waiting"
-                android:drawableStart="@drawable/waiting"
                 android:drawablePadding="4dp"/>
+            
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:padding="4dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/cancel_order"
+                android:textSize="16sp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginEnd="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/accept"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="4dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/accept_order"
+                android:textSize="16sp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

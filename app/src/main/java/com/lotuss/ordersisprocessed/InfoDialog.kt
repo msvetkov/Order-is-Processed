@@ -1,4 +1,4 @@
-package com.lotuss.ordersisprocessed.waiter.orders
+package com.lotuss.ordersisprocessed
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -27,6 +27,13 @@ class InfoDialog: DialogFragment(){
         this.desc = desc
     }
 
+    private fun getTotalPrice(list: MutableList<Food>): Double{
+        var totalPrice = 0.0
+        for (f: Food in list){
+            totalPrice += f.prise
+        }
+        return totalPrice
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val v: View = inflater.inflate(R.layout.info_dialog, null)
@@ -34,8 +41,9 @@ class InfoDialog: DialogFragment(){
         val recycler: RecyclerView = v.food_recycler
         recycler.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recycler.adapter = orderFoodAdapter
-        v.desc.text = desc
+        v.desc.append(": $desc")
         v.status.text = status
+        v.total_price.text = context!!.resources.getString(R.string.total_price, getTotalPrice(list))
         v.order_id.text = context!!.resources.getString(R.string.order_id, orderId)
         v.ok.setOnClickListener{dismiss()}
         return v

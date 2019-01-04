@@ -1,11 +1,15 @@
 package com.lotuss.ordersisprocessed.waiter.orders
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.PendingIntent
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +19,12 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.lotuss.ordersisprocessed.R
 import com.lotuss.ordersisprocessed.data.orders.Order
+import com.lotuss.ordersisprocessed.waiter.WaiterActivity
 import kotlinx.android.synthetic.main.orders_fragment.view.*
-
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+import com.lotuss.ordersisprocessed.data.auth.UserManager
 
 
 class FragmentOrders: Fragment(){
@@ -36,6 +44,50 @@ class FragmentOrders: Fragment(){
         return view
     }
 
+    private fun sendNotification(order: Order){
+        val notificationManager: NotificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notifyId = 0
+        val id = context!!.getString(R.string.default_notification_channel_id)
+        val title = context!!.getString(R.string.default_notification_channel_title)
+        val intent: Intent
+        val pendingIntent: PendingIntent
+        val builder: NotificationCompat.Builder
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val importance: Int = NotificationManager.IMPORTANCE_HIGH
+            var mChannel: NotificationChannel? = notificationManager.getNotificationChannel(id)
+            if (mChannel == null) {
+                mChannel = NotificationChannel(id, title, importance)
+                mChannel.enableVibration(true)
+                mChannel.vibrationPattern = longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
+                notificationManager.createNotificationChannel(mChannel)
+            }
+            builder = NotificationCompat.Builder(context!!, id)
+            intent = Intent(context, WaiterActivity::class.java)
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+            builder.setContentTitle(context!!.getString(R.string.order_is_done))
+                    .setSmallIcon(R.drawable.splash_for_v23)
+                    .setContentText(context!!.getString(R.string.give_order, order.id))
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setVibrate(longArrayOf(100, 200, 400, 300, 500, 400, 300, 200, 400))
+        }else{
+            builder = NotificationCompat.Builder(context!!, id)
+            intent = Intent(context, WaiterActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+            builder.setContentTitle(context!!.getString(R.string.order_is_done))
+                    .setSmallIcon(R.drawable.splash_for_v23)
+                    .setContentText(context!!.getString(R.string.give_order, order.id))
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setVibrate(longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400))
+        }
+        val notification = builder.build()
+        notificationManager.notify(notifyId, notification)
+    }
+
     private fun getOrderList(progressBar: ProgressBar, adapter: OrdersAdapter){
         val orderReference = database.getReference("orders")
         orderReference.addValueEventListener(object: ValueEventListener {
@@ -47,8 +99,14 @@ class FragmentOrders: Fragment(){
                 orderList.clear()
                 for (ds in dataSnapshot.children) {
                     val order: Order = ds.getValue(Order::class.java)!!
-                    orderList.add(order)
-                    adapter.notifyDataSetChanged()
+                    if (order.waiter == UserManager.user.id) {
+                        orderList.add(order)
+                        adapter.notifyDataSetChanged()
+                        if (!order.checkedByWaiter) {
+                            sendNotification(order)
+                            orderReference.child(order.id.toString()).child("checkedByWaiter").setValue(true)
+                        }
+                    }
                 }
                 progressBar.visibility = View.GONE
                 adapter.notifyDataSetChanged()

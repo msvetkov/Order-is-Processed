@@ -12,5 +12,6 @@ data class Order(
         var waiter: String = "waiter",
         var desc: String = "desk",
         var status: Int = 0,
-        var checked: Boolean = false
+        var checkedByWaiter: Boolean = true,
+        var checkedByCook: Boolean = false
 )

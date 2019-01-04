@@ -66,7 +66,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_check_circle_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_clear_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -76,13 +76,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="color" value="d32f2f" />
-                            <entry key="height" value="768" />
-                            <entry key="outputName" value="ic_plate_clipart_dc7egbgoi" />
+                            <entry key="color" value="bbbbbb" />
+                            <entry key="outputName" value="cancelled" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\plate-clipart-dc7egbgoi.svg" />
-                            <entry key="width" value="1024" />
                           </map>
                         </option>
                       </PersistentState>
