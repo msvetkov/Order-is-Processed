@@ -1,55 +1,57 @@
 <resources>
-    <string name="app_name">Order\'s Processed</string>
-    <string name="waiter">Официант</string>
-    <string name="cook">Повар</string>
-    <string name="sign_in">Войти</string>
-    <string name="email">Email</string>
-    <string name="password">Пароль</string>
-    <string name="new_user">Впервые здесь?</string>
-    <string name="sign_up">Создать аккаунт</string>
-    <string name="fist_name">Имя</string>
-    <string name="last_name">Фамилия</string>
-    <string name="repeat_password">Повторите пароль</string>
-    <string name="title_activity_waiter">WaiterActivity</string>
-    <string name="title_menu">Меню</string>
-    <string name="title_orders">Заказы</string>
-    <string name="action_settings">Настройки</string>
-    <string name="action_exit">Выйти</string>
-    <string name="loading">Пожалуйста, подождите…</string>
-    <string name="email_is_empty">Введите email</string>
-    <string name="password_is_empty">Введите пароль</string>
-    <string name="first_name_is_empty">Введите имя</string>
-    <string name="last_name_is_empty">Введите фамилию</string>
-    <string name="no_acc">Неверный логин или пароль</string>
-    <string name="error">Ошибка, повторите позже</string>
-    <string name="passwords_dont_match">Пароли не совпадают</string>
-    <string name="password_length_error">Длина пароля должна превышать 6 символов</string>
-    <string name="plus">+</string>
-    <string name="minus">-</string>
-    <string name="order_food_list">Заказ</string>
-    <string name="notes">Примечания</string>
-    <string name="send_order">Отправить заказ</string>
-    <string name="cancel">Отмена</string>
-    <string name="pieces">%1$d шт.</string>
-    <string name="your_order_is_empty">Ваш заказ пуст</string>
-    <string name="pepper">без перца</string>
-    <string name="sugar">без сахара</string>
-    <string name="order_id">#%1$d</string>
-    <string name="more_information">Подробнее...</string>
-    <string name="sent">Отправлен</string>
-    <string name="cooking">Готовится</string>
-    <string name="cooked">Готов</string>
-    <string name="ok">ОК</string>
-    <string name="total_price">Итого: <b>%1$.2f руб.</b></string>
-    <string name="order_is_done">Заказ готов</string>
-    <string name="give_order">Заберите заказ #%1$d</string>
-    <string name="cancel_order">Отменить</string>
-    <string name="accept_order">Принять</string>
-    <string name="default_notification_channel_id">defoult_channel</string>
-    <string name="default_notification_channel_title">Defoult channel</string>
-    <string name="cancelled">Отменен</string>
-    <string name="do_you_want_cancel">Вы действительно хотите отменить заказ?</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
-    <string name="done">Готово</string>
+    <string name="app_name" translatable="false">Order\'s Processed</string>
+    <string name="waiter">Waiter</string>
+    <string name="cook">Cook</string>
+    <string name="sign_in">Login</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
+    <string name="new_user">New user?</string>
+    <string name="fist_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="repeat_password">Confirm password</string>
+    <string name="title_activity_waiter" translatable="false">WaiterActivity</string>
+    <string name="title_menu">Menu</string>
+    <string name="title_orders">Orders</string>
+    <string name="loading">Please, wait…</string>
+    <string name="email_is_empty">Enter email</string>
+    <string name="password_is_empty">Enter password</string>
+    <string name="first_name_is_empty">Enter name</string>
+    <string name="last_name_is_empty">Enter surname</string>
+    <string name="no_acc">Wrong login or password</string>
+    <string name="error">Error, try again later</string>
+    <string name="password_length_error">Password must be longer than 6 characters.</string>
+    <string name="plus" translatable="false">+</string>
+    <string name="minus" translatable="false">-</string>
+    <string name="order_food_list">Order</string>
+    <string name="notes">Notes</string>
+    <string name="send_order">Send order</string>
+    <string name="cancel">Cancel</string>
+    <string name="pieces">%1$d pcs.</string>
+    <string name="your_order_is_empty">Add something to the list</string>
+    <string name="pepper">without pepper</string>
+    <string name="sugar">sugarless</string>
+    <string name="order_id" translatable="false">#%1$d</string>
+    <string name="sent">Sent</string>
+    <string name="cooking">Prepare</string>
+    <string name="cooked">Prepared</string>
+    <string name="ok">OK</string>
+    <string name="total_price">Total: $%1$.2f</string>
+    <string name="new_order_title">New order</string>
+    <string name="new_order_message">Received order #%1$d</string>
+    <string name="order_is_done_title">Order is ready</string>
+    <string name="order_is_done_message">Pick up order #%1$d</string>
+    <string name="order_is_cancelled_title">Order cancelled</string>
+    <string name="order_is_cancelled_message">Canceled order #%1$d</string>
+    <string name="cancel_order">Cancel</string>
+    <string name="accept_order">Accept</string>
+    <string name="default_notification_channel_id" translatable="false">defoult_channel</string>
+    <string name="default_notification_channel_title" translatable="false">Defoult channel</string>
+    <string name="cancelled">Canceled</string>
+    <string name="do_you_want_cancel">Do you really want to cancel the order?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="done">Ready</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="action_exit">Log out</string>
+    <string name="passwords_dont_match">Passwords do not match</string>
 </resources>

@@ -117,7 +117,6 @@ class WaiterActivity : AppCompatActivity() {
         val id = item.itemId
 
         when(id){
-            R.id.action_settings -> return true
             R.id.action_exit -> {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, AuthActivity::class.java)

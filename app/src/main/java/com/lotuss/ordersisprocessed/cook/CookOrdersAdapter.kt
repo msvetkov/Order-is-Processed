@@ -14,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.lotuss.ordersisprocessed.R
 import com.lotuss.ordersisprocessed.data.orders.Order
 import com.lotuss.ordersisprocessed.InfoDialog
-import com.lotuss.ordersisprocessed.waiter.menu.OrderDialog
 import kotlinx.android.synthetic.main.order_cook_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,7 +38,8 @@ class CookOrdersAdapter(private val layoutInflater: LayoutInflater, private val 
     private fun acceptOrder(order: Order){
         val database = FirebaseDatabase.getInstance()
         val reference = database.getReference("orders")
-        reference.child(order.id.toString()).child("checkedByWaiter").setValue(false)
+        if(order.status != 0)
+            reference.child(order.id.toString()).child("checkedByWaiter").setValue(false)
         reference.child(order.id.toString()).child("status").setValue(order.status + 1)
 
     }
@@ -72,16 +72,16 @@ class CookOrdersAdapter(private val layoutInflater: LayoutInflater, private val 
                 orderHolder.status.setCompoundDrawablesWithIntrinsicBounds(image, null, null, null)
             }
             2 -> {
-                orderHolder.accept.isClickable = false
-                orderHolder.cancel.isClickable = false
+                orderHolder.accept.visibility = View.GONE
+                orderHolder.cancel.visibility = View.GONE
                 statusText = orderHolder.status.context.resources.getString(R.string.cooked)
                 orderHolder.status.text = statusText
                 val image: Drawable = orderHolder.status.context.resources.getDrawable(R.drawable.done)
                 orderHolder.status.setCompoundDrawablesWithIntrinsicBounds(image, null, null, null)
             }
             3 ->{
-                orderHolder.accept.isClickable = false
-                orderHolder.cancel.isClickable = false
+                orderHolder.accept.visibility = View.GONE
+                orderHolder.cancel.visibility = View.GONE
                 statusText = orderHolder.status.context.resources.getString(R.string.cancelled)
                 orderHolder.status.text = statusText
                 val image: Drawable = orderHolder.status.context.resources.getDrawable(R.drawable.cancelled)
@@ -98,9 +98,17 @@ class CookOrdersAdapter(private val layoutInflater: LayoutInflater, private val 
 
         orderHolder.accept.setOnClickListener {
             acceptOrder(order)
+            order.status++
+            if(order.status == 2)
+                orderHolder.accept.visibility = View.GONE
+            orderHolder.cancel.visibility = View.GONE
         }
         orderHolder.cancel.setOnClickListener {
             cancelOrder(order, orderHolder.cancel.context)
+            if(order.status == 3) {
+                orderHolder.accept.visibility = View.GONE
+                orderHolder.cancel.visibility = View.GONE
+            }
         }
     }
 

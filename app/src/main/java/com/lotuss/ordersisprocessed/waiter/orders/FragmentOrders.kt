@@ -52,6 +52,18 @@ class FragmentOrders: Fragment(){
         val intent: Intent
         val pendingIntent: PendingIntent
         val builder: NotificationCompat.Builder
+        var notificationTitle = ""
+        var notificationMessage = ""
+        when (order.status){
+            2 -> {
+                notificationTitle = context!!.getString(R.string.order_is_done_title)
+                notificationMessage = context!!.getString(R.string.order_is_done_message, order.id)
+            }
+            3 -> {
+                notificationTitle = context!!.getString(R.string.order_is_cancelled_title)
+                notificationMessage = context!!.getString(R.string.order_is_cancelled_message, order.id)
+            }
+        }
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val importance: Int = NotificationManager.IMPORTANCE_HIGH
             var mChannel: NotificationChannel? = notificationManager.getNotificationChannel(id)
@@ -64,9 +76,9 @@ class FragmentOrders: Fragment(){
             builder = NotificationCompat.Builder(context!!, id)
             intent = Intent(context, WaiterActivity::class.java)
             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-            builder.setContentTitle(context!!.getString(R.string.order_is_done))
+            builder.setContentTitle(notificationTitle)
                     .setSmallIcon(R.drawable.splash_for_v23)
-                    .setContentText(context!!.getString(R.string.give_order, order.id))
+                    .setContentText(notificationMessage)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
@@ -76,9 +88,9 @@ class FragmentOrders: Fragment(){
             intent = Intent(context, WaiterActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-            builder.setContentTitle(context!!.getString(R.string.order_is_done))
+            builder.setContentTitle(notificationTitle)
                     .setSmallIcon(R.drawable.splash_for_v23)
-                    .setContentText(context!!.getString(R.string.give_order, order.id))
+                    .setContentText(notificationMessage)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
@@ -103,6 +115,7 @@ class FragmentOrders: Fragment(){
                         orderList.add(order)
                         adapter.notifyDataSetChanged()
                         if (!order.checkedByWaiter) {
+                            if (order.status != 1)
                             sendNotification(order)
                             orderReference.child(order.id.toString()).child("checkedByWaiter").setValue(true)
                         }

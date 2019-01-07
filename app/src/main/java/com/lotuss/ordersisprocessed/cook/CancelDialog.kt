@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.cancel_dialog.view.*
 class CancelDialog: DialogFragment(){
 
     var orderId = 0
+    var from = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -21,7 +22,9 @@ class CancelDialog: DialogFragment(){
         v.yes_btn.setOnClickListener {
             val database = FirebaseDatabase.getInstance()
             val reference = database.getReference("orders")
-            reference.child(orderId.toString()).child("checkedByWaiter").setValue(false)
+            if (from == 0){
+                reference.child(orderId.toString()).child("checkedByWaiter").setValue(false)
+            }else reference.child(orderId.toString()).child("checkedByCook").setValue(false)
             reference.child(orderId.toString()).child("status").setValue(3)
             dismiss()
         }

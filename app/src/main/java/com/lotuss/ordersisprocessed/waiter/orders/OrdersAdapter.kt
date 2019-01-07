@@ -5,12 +5,14 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.lotuss.ordersisprocessed.InfoDialog
 import com.lotuss.ordersisprocessed.R
+import com.lotuss.ordersisprocessed.cook.CancelDialog
 import com.lotuss.ordersisprocessed.data.orders.Order
 import kotlinx.android.synthetic.main.order_waiter_item.view.*
 import java.text.SimpleDateFormat
@@ -31,6 +33,14 @@ class OrdersAdapter(private val layoutInflater: LayoutInflater, private val item
     private fun formatDate(date: Date):String{
         val format = SimpleDateFormat("hh:mm")
         return format.format(date)
+    }
+
+    private fun cancelOrder(order: Order, context: Context){
+        val activity: AppCompatActivity = context as AppCompatActivity
+        val dialog = CancelDialog()
+        dialog.orderId = order.id
+        dialog.from = 1
+        dialog.show(activity.supportFragmentManager.beginTransaction(), "DialogFragment")
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -61,6 +71,7 @@ class OrdersAdapter(private val layoutInflater: LayoutInflater, private val item
             3 ->{
                 statusText = orderHolder.status.context.resources.getString(R.string.cancelled)
                 orderHolder.status.text = statusText
+                orderHolder.cancel.visibility = View.GONE
                 val image: Drawable = orderHolder.status.context.resources.getDrawable(R.drawable.cancelled)
                 orderHolder.status.setCompoundDrawablesWithIntrinsicBounds(image, null, null, null)
             }
@@ -72,6 +83,12 @@ class OrdersAdapter(private val layoutInflater: LayoutInflater, private val item
             dialog.setInfo(order.id, order.orderList, statusText, order.desc)
             dialog.show(activity.supportFragmentManager.beginTransaction(), "DialogFragment")
         }
+
+        orderHolder.cancel.setOnClickListener {
+            cancelOrder(order, orderHolder.cancel.context)
+            if(order.status == 3)
+                orderHolder.cancel.visibility = View.GONE
+        }
     }
 
     class OrderHolder(view: View): RecyclerView.ViewHolder(view){
@@ -79,5 +96,6 @@ class OrdersAdapter(private val layoutInflater: LayoutInflater, private val item
         val orderId: TextView = view.order_id
         val date: TextView = view.date
         val status: TextView = view.status
+        val cancel: Button = view.cancel
     }
 }
